@@ -1,7 +1,3 @@
-settings.json
-
-# python compiled files
+.idea/
 *.pyc
-
-# Vim temp files
-.*.sw?
+__pycache__/

@@ -1,0 +1,25 @@
+skillMetadata:
+  sections:
+    - name: News Source
+      fields:
+        - name: station
+          type: select
+          label: Default Station
+          options: NPR News Now|NPR;ABC News Australia|ABC;AP Hourly News|AP;BBC News|BBC;CBC News|CBC; DLF|DLF;Ekot|Ekot;Fox News|FOX;PBS NewsHour|PBS;VRT Nieuws|VRT;WDR|WDR;YLE|YLE;RDP|RDP Africa;TSF Radio|TSF
+          value: "NPR"
+        - name: custom_url
+          type: text
+          label: Custom News Source (RSS Address)
+          value:
+    - name: Playback Settings
+      fields:
+        - name: volume
+          type: number
+          label: Playback Volume Scaler
+          value: "1.0"
+    - name: Internal Settings
+      fields:
+        - name: sock_path
+          type: text
+          label: MPV Socket path
+          value: /tmp/mpv
