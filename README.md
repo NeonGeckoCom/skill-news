@@ -27,7 +27,8 @@ Supported stations include:
 * "Restart news"
 
 ## Credits
-Mycroft AI (@MycroftAI)
+[Mycroft AI](https://github.com/MycroftAI)
+[NeonDaniel](https://github.com/NeonDaniel)
 
 ## Category
 **Daily**
