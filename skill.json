@@ -46,7 +46,7 @@
         "Mycroft AI",
         "NeonDaniel"
     ],
-    "skillname": "Latest news",
+    "skillname": "skill-news",
     "authorname": "NeonGeckoCom",
     "foldername": null
 }
