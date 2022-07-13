@@ -54,6 +54,7 @@ from neon_utils.message_utils import request_from_mobile
 from adapt.intent import IntentBuilder
 from neon_utils.skills.common_play_skill import CommonPlaySkill, CPSMatchLevel
 from neon_utils.logger import LOG
+from neon_utils.message_utils import get_message_user
 
 from mycroft.skills.core import intent_handler, intent_file_handler
 from mycroft.util import get_cache_directory
@@ -341,9 +342,11 @@ class NewsSkill(CommonPlaySkill):
 
                 url = self.get_media_url(rss)
                 if request_from_mobile(message):
-                    self.mobile_skill_intent("podcast", {"link": url}, message)
+                    pass
+                    # TODO
+                    # self.mobile_skill_intent("podcast", {"link": url}, message)
                     # self.socket_io_emit('podcast', f"&link={url}", flac_filename=message.context["flac_filename"])
-                elif self.server:
+                elif message.context.get('klat_data'):
                     self.speak(f"newsskill:{url}")
                     # self.send_with_audio("Here is the news.", url, message)
                 else:
@@ -366,7 +369,7 @@ class NewsSkill(CommonPlaySkill):
                     self.CPS_play(('file://' + self.stream, mime))
                     self.CPS_send_status(image=image or image_path('generic.png'),
                                          track=self.now_playing)
-                    self.user_to_last_message[self.get_utterance_user(message)] = message
+                    self.user_to_last_message[get_message_user(message)] = message
                     self.enable_intent('restart_playback')
 
             except Exception as e:
@@ -377,8 +380,8 @@ class NewsSkill(CommonPlaySkill):
     @intent_handler(IntentBuilder('').require('Restart'))
     def restart_playback(self, message):
         LOG.debug('Restarting last message')
-        if self.get_utterance_user(message) in self.user_to_last_message.keys():
-            self.handle_latest_news(self.user_to_last_message[self.get_utterance_user(message)])
+        if get_message_user(message) in self.user_to_last_message.keys():
+            self.handle_latest_news(self.user_to_last_message[get_message_user(message)])
 
     def stop(self):
         # # End mpv playback
